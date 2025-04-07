@@ -5,6 +5,7 @@ import { validateRegisterInput } from '../utils/validation.js';
 import { generateToken } from '../utils/jwtUtils.js';
 import { generateResetToken } from "../utils/jwtUtils.js";
 import { verifyResetToken } from "../utils/jwtUtils.js";
+import { verifyToken } from "../utils/jwtUtils.js";
 import nodemailer from 'nodemailer';
 import passport from 'passport';
 import GoogleStrategy from 'passport-google-oauth20';
@@ -32,7 +33,7 @@ router.post('/register', async (req, res) => {
             email,
             password: hashPassword,
             username,
-            isVarified: false
+            isVerified: false
         });
 
         await newUser.save();
@@ -133,7 +134,7 @@ router.post("/forget-password", async (req, res) => {
         const { email } = req.body; 
 
         // 1. Find User
-        const user = await User.fineOne({ email });
+        const user = await User.findOne({ email });
         if (!user) return res.status(400).json({ message: "User Not Found" });
 
         // 2. Generate Reset Token
@@ -165,7 +166,7 @@ router.post("/forget-password", async (req, res) => {
 });
 
 // ===== Reset Password Route ===== 
-router.post("reset-password", async (req, res) => {
+router.post("/reset-password", async (req, res) => {
     try{
         const { token, newPassword } = req.body; 
 
@@ -199,7 +200,7 @@ passport.use(new GoogleStrategy({
 },
 async (accessToken, refreshToken, profile, done) => {
     try {
-        const user = await User.fineOne({googleId: profile.id});
+        const user = await User.findOne({googleId: profile.id});
         if (user) return done(null, user);
 
         const newUser = new User({
