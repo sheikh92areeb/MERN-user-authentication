@@ -53,7 +53,7 @@ router.post('/register', async (req, res) => {
         const verificationLink = `${process.env.CLIENT_URL}/verify?token=${verificationToken}`;
 
         const mailOptions = {
-            from: `Your App Name ${process.env.EMAIL_USER}`,
+            from: `"Your App Name" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: "Verify Your Email",
             html: `
@@ -194,8 +194,8 @@ router.post("/reset-password", async (req, res) => {
 
 // ===== Google OAuth Route ===== 
 passport.use(new GoogleStrategy({
-    clientID: "YOUR_GOOGLE_CLIENT_ID",
-    clientSecret: "YOUR_GOOGLE_CLIENT_SECRET",
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret:  process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:5000/api/auth/google/callback"
 },
 async (accessToken, refreshToken, profile, done) => {

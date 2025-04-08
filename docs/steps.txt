@@ -1,0 +1,186 @@
+Awesome! Let’s get you started with your full MERN stack authentication project setup using:
+
+🟡 Vite + React
+
+🔵 Redux Toolkit
+
+🔵 React Hook Form
+
+🟢 Node.js + Express
+
+⚫ MongoDB
+
+🔐 JWT, OAuth, Email Verification, and more
+
+🛠️ Step-by-Step Project Setup Guide
+🧩 Step 1: Create Project Root Folders
+In your desired directory:
+
+bash
+Copy
+Edit
+mkdir mern-auth-project
+cd mern-auth-project
+mkdir client server
+⚙️ Step 2: Initialize Backend (server/)
+bash
+Copy
+Edit
+cd server
+npm init -y
+📦 Install Backend Dependencies
+bash
+Copy
+Edit
+npm install express mongoose bcryptjs jsonwebtoken dotenv cors nodemailer cookie-parser
+npm install --save-dev nodemon
+📄 Create Basic Files
+server.js → Entry point
+
+.env → For your secrets
+
+Create folders: controllers, routes, models, middlewares, utils, config
+
+bash
+Copy
+Edit
+touch server.js .env
+mkdir controllers routes models middlewares utils config
+🧪 Step 3: Setup Vite + React Frontend (client/)
+bash
+Copy
+Edit
+cd ../client
+npm create vite@latest
+# Name: client
+# Select: React
+# Select: JavaScript
+
+cd client
+npm install
+📦 Install Frontend Dependencies
+bash
+Copy
+Edit
+npm install react-redux @reduxjs/toolkit react-router-dom axios react-hook-form
+🏗️ Step 4: Setup Folder Structure in client/src
+bash
+Copy
+Edit
+mkdir src/pages src/components src/features src/services src/router src/hooks
+Recommended file structure:
+
+bash
+Copy
+Edit
+src/
+├── pages/            # Login, Signup, Dashboard
+├── features/         # Redux slices (auth/)
+├── services/         # Axios setup, API calls
+├── components/       # Navbar, FormInput, etc.
+├── router/           # Routes and PrivateRoute
+├── hooks/            # Custom hooks (e.g., useAuth)
+🔐 Step 5: Setup Redux Toolkit
+Create src/features/auth/authSlice.js
+
+Setup store.js and wrap your App.jsx with <Provider>
+
+💾 Step 6: Connect MongoDB
+Use MongoDB Atlas or local Mongo
+
+Store your DB URI in .env
+
+env
+Copy
+Edit
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+CLIENT_URL=http://localhost:5173
+
+🔄 Step 7: Create Backend API Routes
+/api/auth/register
+
+/api/auth/login
+
+/api/auth/verify
+
+/api/auth/forgot-password
+
+/api/auth/reset-password
+
+/api/auth/google
+
+🔐 Step 8: Implement Auth Features
+✅ Register
+
+Validate input
+
+Hash password
+
+Send verification email
+
+✅ Login
+
+Validate credentials
+
+Issue JWT
+
+Set HttpOnly cookie or return token
+
+✅ JWT Middleware
+
+Protect routes with token validation
+
+✅ Email Verification
+
+Use crypto tokens
+
+Nodemailer to send link
+
+✅ Forgot/Reset Password
+
+Create and validate reset tokens
+
+✅ OAuth with Google
+
+Use Google APIs to validate token
+
+Sign up or login user
+
+🧠 Step 9: Frontend Forms (React Hook Form)
+Create the following pages using React Hook Form:
+
+Signup Page
+
+Login Page
+
+Forgot Password Page
+
+Reset Password Page
+
+Email Verification Page
+
+Connect to backend via Axios services.
+
+🔐 Step 10: Route Protection
+Create PrivateRoute component
+
+Redirect unauthorized users
+
+Use auth state from Redux
+
+🧪 Step 11: Test Everything
+Signup, verify, login
+
+Forgot and reset password
+
+Test token expiration and route protection
+
+OAuth login
+
+🚀 Step 12: Deployment (Optional)
+Frontend: Vercel / Netlify
+
+Backend: Render / Railway / VPS
+
+Use HTTPS & environment variables
