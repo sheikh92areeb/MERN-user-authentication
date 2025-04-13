@@ -7,7 +7,6 @@ import ResetPassword from './Pages/ResetPassword'
 
 function App() {
   
-
   return (
     <>
       <div>
