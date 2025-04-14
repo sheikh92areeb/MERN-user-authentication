@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { assets } from '../assets/assets'
 import axios from 'axios'
 import { AppContent } from '../context/AppContext'
@@ -11,6 +11,10 @@ const EmailVerify = () => {
   const {backendUrl, isLoggedin, userData, getUserData} = useContext(AppContent)
   const inputRefs = React.useRef([])
   const navigate = useNavigate()
+
+  useEffect(() => {
+    isLoggedin && userData && userData.isVerified && navigate('/')
+  }, [isLoggedin, userData])
 
   const handleInput = (e, index) => {
     if(e.target.value.length > 0 && index < inputRefs.current.length - 1) {
